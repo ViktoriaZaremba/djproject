@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+{% extends 'oncourse/index.html' %}
+
+{% block head %}
+    <title>Login</title>
+{% endblock %}
+
+{% block body %}
+    <h1>Log in</h1>
+    <form class="site-form" action="{% url 'oncourse:login' %}" method="post">
+        {% csrf_token %}
+        <p>{{ form }}</p>
+        <input type="submit" value="Login">
+    </form>
+    <form action="{% url 'oncourse:index' %}" method="get">
+        {% csrf_token %}
+        <input type="submit" value="Back!">
+    </form>
+{% endblock %}
+</html>

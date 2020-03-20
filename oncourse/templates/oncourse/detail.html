@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+{% extends 'oncourse/index.html' %}
+
+{% block head %}
+    <title>Course details</title>
+{% endblock %}
+
+{% block body %}
+<h1>{{ course.course_name }}</h1>
+
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+    {% csrf_token %}
+
+{% for detail in course.details_set.all %}
+    <table>
+        <tr>
+            <td>Лектор:</td><td>{{ detail.lecturer }}</td>
+        </tr>
+        {% if detail.date is not None %}
+            <tr>
+                <td>Дата початку:</td><td>{{ detail.date }}</td>
+            </tr>
+        {% endif %}
+        <tr>
+            <td>Опис:</td><td>{{ detail.description }}</td>
+        </tr>
+    </table>
+{% endfor %}
+
+<form action="{% url 'oncourse:index' %}" method="get">
+    {% csrf_token %}
+    <input type="submit" value="Back!">
+</form>
+{% endblock %}
+</html>
+

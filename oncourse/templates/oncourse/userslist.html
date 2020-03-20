@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+{% extends 'oncourse/index.html' %}
+
+{% block head %}
+    <title>Users</title>
+{% endblock %}
+
+{% block body %}
+<h1>Users</h1>
+
+<table>
+    <tr>
+        <td>username</td>
+        <td>First name</td>
+        <td>Last name</td>
+        <td>Email</td>
+    </tr>
+
+    {% for u in all %}
+        <tr>
+        <td>{{ u.username }}</td>
+        <td>{{ u.first_name }}</td>
+        <td>{{ u.last_name }}</td>
+        <td>{{ u.email }}</td>
+        </tr>
+    {% endfor %}
+</table>
+<form action="{% url 'oncourse:index' %}" method="get">
+    {% csrf_token %}
+    <input type="submit" value="Back!">
+</form>
+
+{% endblock %}
+<!DOCTYPE html>
+<html>

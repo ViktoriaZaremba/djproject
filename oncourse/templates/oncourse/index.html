@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'oncourse/style.css' %}">
+        {% block head %}
+            <title>ONCOURSE</title>
+        {% endblock %}
+    </head>
+
+    <body>
+        <header class="hstyle">
+            <img src="https://document-export.canva.com/DAD3Bx9cC_w/15/thumbnail/0001-5605026286.png" alt="OnCourse logo">
+        </header>
+
+        <nav class="menu">
+            {% if user.is_authenticated %}
+            <form action="{% url 'oncourse:logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+            <form action="{% url 'oncourse:profile' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Profile</button>
+            </form>
+
+            {% else %}
+            <form action="{% url 'oncourse:signup' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Sign Up</button>
+            </form>
+            <form action="{% url 'oncourse:login' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Log In</button>
+            </form>
+            {% endif %}
+            <form action="{% url 'oncourse:index' %}" method="get">
+                {% csrf_token %}
+                <button type="submit">Courses</button>
+            </form>
+            <form action="{% url 'oncourse:userslist' %}" method="get">
+                {% csrf_token %}
+                <button type="submit">Users</button>
+            </form>
+        </nav>
+        <main>
+        {% block body %}
+            <div class="courses">
+                <div class="inline">
+                    {% block content %}
+                        {% if latest_course_list %}
+                            {% for course in latest_course_list %}
+                                <div class="course-item">
+                                    <p>{{ course.course_name }}</p>
+                                    <img src="{{ course.image.url }}">
+                                    <form class="" action="{% url 'oncourse:detail' course.id %}" method="">
+                                        {% csrf_token %}
+                                        <button type="submit">Details</button>
+                                    </form>
+                                </div>
+                            {% endfor %}
+                            {% comment %}
+                            <table>
+                            {% for course in latest_course_list %}
+                                <tr>
+                                    <td><a href="{% url 'oncourse:detail' course.id %}">{{ course.course_name }}</a></td>
+                                    <td>
+                                        <form class="" action="{% url 'oncourse:join' course.id %}" method="">
+                                            {% csrf_token %}
+                                            <button type="submit">Join</button>
+                                        </form>
+                                    </td>
+
+                                </tr>
+                            {% endfor %}
+                            </table>
+                            {% en %}
+                            {% endcomment %}
+                        {% else %}
+                            <p>No courses are available.</p>
+                        {% endif %}
+                    {% endblock %}
+                </div>
+            </div>
+        {% endblock %}
+        </main>
+    </body>
+    <footer>
+       <div class="credits">
+           <p>©Zaremba Viktoria</p>
+       </div>
+    </footer>
+</html>
