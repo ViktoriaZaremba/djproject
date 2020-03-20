@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html>
-{% extends 'oncourse/index.html' %}
+    {% extends 'oncourse/index.html' %}
+    {% load static %}
+    <head>
+        {% block title %}
+            Log out
+        {% endblock %}
+    </head>
 
-{% block head %}
-    <title>Log out</title>
-{% endblock %}
-
-{% block body %}
-<p>You are logged out!</p>
-{% endblock %}
+    <body>
+        {% block body %}
+            <link rel="stylesheet" type="text/css" href="{% static 'oncourse/loggedout.css' %}">
+            <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway&display=swap" rel="stylesheet">
+            <h1>You are logged out!</h1>
+        {% endblock %}
+    </body>
 </html>

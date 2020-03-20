@@ -30,6 +30,7 @@ class Details(models.Model):
     lecturer = models.CharField(max_length=200)
     description = models.TextField(max_length=2000, default='')
     date = models.DateField(blank=True, null=True)
+    image = Course.image
 
     def __str__(self):
         return self.lecturer

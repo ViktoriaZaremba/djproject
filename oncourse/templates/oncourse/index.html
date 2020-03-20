@@ -1,52 +1,53 @@
 <!DOCTYPE html>
 <html>
+
 {% load static %}
 
 
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="{% static 'oncourse/style.css' %}">
-        {% block head %}
-            <title>ONCOURSE</title>
-        {% endblock %}
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+        <title>
+            {% block title %}ONCOURSE{% endblock %}
+        </title>
     </head>
-
     <body>
         <header class="hstyle">
-            <img src="https://document-export.canva.com/DAD3Bx9cC_w/15/thumbnail/0001-5605026286.png" alt="OnCourse logo">
-        </header>
+                <img src="https://document-export.canva.com/DAD3Bx9cC_w/15/thumbnail/0001-5605026286.png" alt="OnCourse logo">
 
-        <nav class="menu">
-            {% if user.is_authenticated %}
-            <form action="{% url 'oncourse:logout' %}" method="post">
-                {% csrf_token %}
-                <button type="submit">Logout</button>
-            </form>
-            <form action="{% url 'oncourse:profile' %}" method="post">
-                {% csrf_token %}
-                <button type="submit">Profile</button>
-            </form>
+                <nav class="menu">
+                {% if user.is_authenticated %}
+                <form action="{% url 'oncourse:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+                <form action="{% url 'oncourse:profile' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Profile</button>
+                </form>
 
-            {% else %}
-            <form action="{% url 'oncourse:signup' %}" method="post">
-                {% csrf_token %}
-                <button type="submit">Sign Up</button>
-            </form>
-            <form action="{% url 'oncourse:login' %}" method="post">
-                {% csrf_token %}
-                <button type="submit">Log In</button>
-            </form>
-            {% endif %}
-            <form action="{% url 'oncourse:index' %}" method="get">
-                {% csrf_token %}
-                <button type="submit">Courses</button>
-            </form>
-            <form action="{% url 'oncourse:userslist' %}" method="get">
-                {% csrf_token %}
-                <button type="submit">Users</button>
-            </form>
-        </nav>
-        <main>
+                {% else %}
+                <form action="{% url 'oncourse:signup' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Sign Up</button>
+                </form>
+                <form action="{% url 'oncourse:login' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Log In</button>
+                </form>
+                {% endif %}
+                <form action="{% url 'oncourse:index' %}" method="get">
+                    {% csrf_token %}
+                    <button type="submit">Courses</button>
+                </form>
+                <form action="{% url 'oncourse:userslist' %}" method="get">
+                    {% csrf_token %}
+                    <button type="submit">Users</button>
+                </form>
+            </nav>
+            </header>
+
         {% block body %}
             <div class="courses">
                 <div class="inline">
@@ -86,11 +87,16 @@
                 </div>
             </div>
         {% endblock %}
-        </main>
+
+        <footer>
+            <div class="images">
+                <a href="https://t.me/pabeda_30"><img src="../../media/images/telegram.png" alt=""></a>
+                <a href="https://www.facebook.com/ViktoriiaZaremba/"><img src="../../media/images/facebook.png" alt=""></a>
+                <a href="https://www.instagram.com/_pabeda_/"><img src="../../media/images/instagram.png" alt=""></a>
+		    </div>
+           <div class="credits">
+               <p>©Zaremba Viktoria</p>
+           </div>
+        </footer>
     </body>
-    <footer>
-       <div class="credits">
-           <p>©Zaremba Viktoria</p>
-       </div>
-    </footer>
 </html>

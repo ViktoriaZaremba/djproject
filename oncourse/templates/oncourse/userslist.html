@@ -1,36 +1,50 @@
 <!DOCTYPE html>
 <html>
-{% extends 'oncourse/index.html' %}
+    {% extends 'oncourse/index.html' %}
+    {% load static %}
 
-{% block head %}
-    <title>Users</title>
-{% endblock %}
+    <head>
+        {% block title %}
+            Users
+        {% endblock %}
+    </head>
 
-{% block body %}
-<h1>Users</h1>
+    <body>
+        {% block body %}
+            <link rel="stylesheet" type="text/css" href="{% static 'oncourse/users.css' %}">
+            <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway&display=swap" rel="stylesheet">
 
-<table>
-    <tr>
-        <td>username</td>
-        <td>First name</td>
-        <td>Last name</td>
-        <td>Email</td>
-    </tr>
+            <h1>Users</h1>
+            <div class="tabel-users">
+                <div class="tbl-header">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>First name</th>
+                                <th>Last name</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
 
-    {% for u in all %}
-        <tr>
-        <td>{{ u.username }}</td>
-        <td>{{ u.first_name }}</td>
-        <td>{{ u.last_name }}</td>
-        <td>{{ u.email }}</td>
-        </tr>
-    {% endfor %}
-</table>
-<form action="{% url 'oncourse:index' %}" method="get">
-    {% csrf_token %}
-    <input type="submit" value="Back!">
-</form>
+                <div class="tbl-content">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <tbody>
+                            {% for u in all %}
+                                <tr>
+                                <td>{{ u.username }}</td>
+                                <td>{{ u.first_name }}</td>
+                                <td>{{ u.last_name }}</td>
+                                <td>{{ u.email }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-{% endblock %}
-<!DOCTYPE html>
+        {% endblock %}
+    </body>
 <html>

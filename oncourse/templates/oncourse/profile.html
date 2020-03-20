@@ -1,29 +1,42 @@
 <!DOCTYPE html>
 <html>
-{% extends 'oncourse/index.html' %}
+    {% extends 'oncourse/index.html' %}
+    {% load static %}
 
-{% block head %}
-    <title>Profile</title>
-{% endblock %}
+    <head>
+        {% block title %}
+            Profile
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}
+            <link rel="stylesheet" type="text/css" href="{% static 'oncourse/profile.css' %}">
+            <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway&display=swap" rel="stylesheet">
 
-{% block body %}
-<div class="container">
-    <h1>Профіль</h1>
-    <p>Username: {{ user.username }}</p>
-    <p>Ім'я: {{ user.first_name }}</p>
-    <p>Прізвище: {{ user.last_name }}</p>
-    <p>Email: {{ user.email }}</p>
-    <table>
-        <tr>
-            <td>
-                <form action="{% url 'oncourse:index' %}" method="get">
-                    {% csrf_token %}
-                    <input type="submit" value="Back!">
-                </form>
-            </td>
-        </tr>
-    </table>
-</div>
+            <div class="container">
+                <h1>User Profile</h1>
+                <div class="user-info">
+                    <table>
+                        <tr>
+                            <th>Username :</th>
+                            <td>{{ user.username }}</td>
+                        </tr>
+                        <tr>
+                            <th>First name :</th>
+                            <td>{{ user.first_name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Last name :</th>
+                            <td>{{ user.last_name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email :</th>
+                            <td>{{ user.email }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
 
-{% endblock %}
+        {% endblock %}
+    </body>
 </html>

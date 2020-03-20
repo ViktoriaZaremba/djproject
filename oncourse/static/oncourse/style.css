@@ -1,13 +1,22 @@
-td {
-    color: brown;
-}
-
 body {
 
-    background: url("backgrond2.png");
+    background: url("../../media/images/backgrond2.png");
 }
 
-.menu button{
+.hstyle{
+    background-color: black;
+    margin-bottom: auto;
+}
+
+.hstyle img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    height: auto;
+}
+
+.hstyle .menu button{
     background-color: black; /* Green background */
     border: 1px solid white; /* Green border */
     color: white; /* White text */
@@ -15,37 +24,27 @@ body {
     padding: 10px 24px; /* Some padding */
     cursor: pointer; /* Pointer/hand icon */
     float: right; /* Float the buttons side by side */
+    font-family: 'Montserrat', sans-serif;
 }
 
-.menu button:not(:last-child) {
+.hstyle .menu button:not(:last-child) {
   border-right: none; /* Prevent double borders */
 }
 
 /* Clear floats (clearfix hack) */
-.menu:after {
+.hstyle .menu:after {
   content: "";
   clear: both;
   display: table;
 }
 
 /* Add a background color on hover */
-.menu button:hover {
-  background-color: burlywood;
+.hstyle .menu button:hover {
+    background-color: white;
+    color: black;
 }
 
-
-.hstyle img{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 40%;
-
-}
-.hstyle{
-    background-color: black;
-}
-
-body .courses{
+.courses{
     padding-top: 50px;
     padding-bottom: 50px;
     /*justify-content: center;*/
@@ -60,12 +59,15 @@ body .courses{
     list-style: none;
 }
 .courses .inline .course-item{
-    width: 250px;
-    height: 300px;
-    padding: 15px;
+    border-radius: 25px;
     border: 5px solid darkred;
-    background-color: rgba(255, 153, 153,0.3);
+    background-color: rgba(255,255,255,0.3);
+    width: 250px;
+    height: auto;
+    padding-top: 7px;
+    padding-bottom: 10px;
     margin: 5px;
+    font-family: 'Raleway', sans-serif;
 }
 
 .courses .inline .course-item img{
@@ -76,9 +78,10 @@ body .courses{
 }
 
 .courses .inline .course-item p{
-    font-size: 18px;
+    font-size: 20px;
     text-align: center;
     color: white;
+    line-height: 0.8;
 }
 
 .courses .inline .course-item button{
@@ -91,10 +94,12 @@ body .courses{
     display: block;
     margin: 0 auto;
     font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .courses .inline .course-item button:hover {
-  background-color: burlywood;
+    background-color: white;
+    color: black;
 }
 
 footer {
@@ -103,6 +108,25 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
+}
+
+footer .images {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+
+}
+
+footer .images img {
+    width: 30px;
+    height: auto;
+    margin-top: 5px;
 }
 
 footer .credits {

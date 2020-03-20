@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
-{% extends 'oncourse/index.html' %}
+    {% extends 'oncourse/index.html' %}
+    {% load static %}
+    <head>
+        {% block title %}
+            Log in
+        {% endblock %}
+    </head>
 
-{% block head %}
-    <title>Log in</title>
-{% endblock %}
-
-{% block body %}
-<p>Can't register new user while you;re logged in. Logout and try again!</p>
-
-<form action="{% url 'oncourse:index' %}" method="get">
-    {% csrf_token %}
-    <input type="submit" value="Back!">
-</form>
-{% endblock %}
+    <body>
+        {% block body %}
+            <link rel="stylesheet" type="text/css" href="{% static 'oncourse/loggedout.css' %}">
+            <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway&display=swap" rel="stylesheet">
+            <h1>Can't register new user while you;re logged in. Logout and try again!</h1>
+        {% endblock %}
+    </body>
 </html>

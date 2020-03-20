@@ -28,7 +28,6 @@ class SignUpForm(UserCreationForm):     # Реєстрація
         return user
 
 
-
 class LogInForm(AuthenticationForm):
     username = forms.CharField(max_length=30)
 
