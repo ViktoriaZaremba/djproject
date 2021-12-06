@@ -1,2 +1,2 @@
-web:gunicorn djpoject.wsji
+web: gunicorn djproject.wsgi
 
