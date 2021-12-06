@@ -1,8 +1,10 @@
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, DetailView
 from django.template import RequestContext
 from django.shortcuts import render, get_object_or_404
@@ -11,7 +13,9 @@ from .forms import SignUpForm, LogInForm
 from .models import Course
 
 
-def signup_view(request):     # реєстрація
+
+@csrf_exempt
+def signup_view(request):  # реєстрація
     if request.user.is_authenticated:
         return render(request, 'oncourse/loggedin.html')
     else:
@@ -23,6 +27,15 @@ def signup_view(request):     # реєстрація
             else:
                 form = SignUpForm()
                 return render(request, 'oncourse/signup.html', {'form': form})
+
+
+@csrf_exempt
+def validate_username(request):
+    username = request.POST.get('username', None)
+    data = {
+        'is_taken': User.objects.filter(username__iexact=username).exists()
+    }
+    return JsonResponse(data)
 
 
 def login_view(request):

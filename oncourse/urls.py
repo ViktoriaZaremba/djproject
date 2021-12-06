@@ -11,5 +11,5 @@ urlpatterns = [
     path('logout/', views.logout_view, name="logout"),
     path('profile/', views.view_profile, name="profile"),
     path('userslist/', views.UsersList, name="userslist"),
-    #path('loggedout/', )
+    url(r'^ajax/validate_username/$', views.validate_username),
 ]

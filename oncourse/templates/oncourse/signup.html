@@ -1,39 +1,78 @@
 <!DOCTYPE html>
 <html>
-    {% extends 'oncourse/index.html' %}
-    {% load static %}
+{% extends 'oncourse/index.html' %}
+{% load static %}
 
-    <head>
-        {% block title %}
-            Sign Up
-        {% endblock %}
-    </head>
+    {% block javascript %}
+    <script>
+        $("#id_username").change(function () {
+            var username = $(this).val();
 
-    <body>
-        {% block body %}
-            <link rel="stylesheet" type="text/css" href="{% static 'oncourse/signup.css' %}">
-            <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway&display=swap" rel="stylesheet">
-            <div class="login">
-                <h1>Sign up Form</h1>
-                <div class="form-s">
-                    <form method="post">
-                      {% csrf_token %}
-                      {% for field in form %}
-                        <p>
-                          {{ field.label_tag }}<br>
-                          {{ field }}
-                          {% comment %}{% if field.help_text %}
+            $.ajax({
+                type: "POST",
+                url: 'http://127.0.0.1:8000/oncourse/ajax/validate_username/',
+                data: {
+                    csrfmiddlewaretoken : getCookie('csrf_token'),
+                    'username': username
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.is_taken) {
+                        alert("A user with this username already exists.");
+                    }
+                }
+            });
+
+        });
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1);
+                if (c.indexOf(name) == 0)
+                    return c.substring(name.length, c.length);
+            }
+            return "";
+        }
+    </script>
+{% endblock %}
+
+
+
+<head>
+    {% block title %}
+        Sign Up
+    {% endblock %}
+</head>
+
+<body>
+{% block body %}
+    <link rel="stylesheet" type="text/css" href="{% static 'oncourse/signup.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway&display=swap" rel="stylesheet">
+    <div class="login">
+        <h1>Sign up Form</h1>
+        <div class="form-s">
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <p>
+                        {{ field.label_tag }}<br>
+                        {{ field }}
+                        {% comment %}{% if field.help_text %}
                             <small style="color: white">{{ field.help_text }}</small>
                           {% endif %}{% endcomment %}
-                          {% for error in field.errors %}
+                        {% for error in field.errors %}
                             <p style="color: red">{{ error }}</p>
-                          {% endfor %}
-                        </p>
-                      {% endfor %}
-                      <button type="submit">Sign up</button>
-                    </form>
-                </div>
-            </div>
-        {% endblock %}
-    </body>
+                        {% endfor %}
+                    </p>
+                {% endfor %}
+                <button type="submit">Sign up</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+</body>
+
 </html>

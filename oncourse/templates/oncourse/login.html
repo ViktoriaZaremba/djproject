@@ -2,6 +2,24 @@
 <html>
     {% extends 'oncourse/index.html' %}
     {% load static %}
+    {% block javascript %}
+  <script>
+    $("#id_username").change(function () {
+      console.log( $(this).val() );
+    });
+    $ajax({
+        url:"http://127.0.0.1:8000/oncourse/login/",
+        type: "POST",
+        data: $('#form').serialize();
+        success: function (data) {
+            console.log('ok');
+            $("#form .result").append(data['response']);
+        }
+    })
+
+
+  </script>
+{% endblock %}
 
     <head>
         {% block title %}
