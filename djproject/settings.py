@@ -111,6 +111,14 @@ LANGUAGE_CODE = 'en-us'
 #     ('en-us', _('English'))
 # )
 
+MIDDLEWARE_CLASSES = (
+    # Simplified static file serving.
+    # https://warehouse.python.org/project/whitenoise/
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+)
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
