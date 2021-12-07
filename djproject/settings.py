@@ -25,7 +25,7 @@ SECRET_KEY = 'p7-x4gcdeh(14-_+9-balwv1t=flphpx3o^7f6k32q&x4jfq%('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','oncourse-django.herokuapp.com']
 
 
 # Application definition
